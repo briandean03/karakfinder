@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Level {
+  NEW
+  READY
+  VERIFIED
+  ELITE
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+model DJ {
+  id               String    @id
+  name             String
+  location         String
+  genres           String[]
+  vibeTags         String[]
+  level            Level
+  pricePerHour     Int
+  bio              String
+  mixUrls          String[]
+  crowdClipUrls    String[]
+  mixScore         Int
+  crowdScore       Int
+  reliabilityScore Int
+  whatsappNumber   String
+  bookings         Booking[]
+  createdAt        DateTime  @default(now())
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  djId        String
+  dj          DJ            @relation(fields: [djId], references: [id])
+  clientName  String
+  clientPhone String
+  eventType   String
+  location    String
+  date        DateTime
+  duration    Int
+  budget      Int
+  notes       String?
+  status      BookingStatus @default(PENDING)
+  createdAt   DateTime      @default(now())
+}
