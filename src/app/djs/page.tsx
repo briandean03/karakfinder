@@ -1,6 +1,8 @@
 import { loadDJs } from '@/lib/data-access';
 import { DJCard } from '@/components/features/dj-card';
 
+export const dynamic = 'force-dynamic';
+
 export default async function DJsPage() {
   const djs = await loadDJs();
 
