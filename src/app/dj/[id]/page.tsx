@@ -8,6 +8,8 @@ import { MixPlayer } from '@/components/features/mix-player';
 import { CrowdClipPlayer } from '@/components/features/crowd-clip-player';
 import { WhatsAppButton } from '@/components/features/whatsapp-button';
 
+export const dynamic = "force-dynamic";
+
 interface DJProfilePageProps {
   params: {
     id: string;
